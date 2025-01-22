@@ -3,6 +3,12 @@
 ## Overview
 This documentation demonstrates the successful integration of Firebase services into a Flutter mobile application, implementing both Authentication and Cloud Firestore for a complete job posting platform.
 
+## Demo & Setup
+![Mobile App Demo](Mobile%20App%20Demo.gif)
+
+Check out our Firebase Console configuration:
+![Firebase Console Setup](Firebase%20Console.png)
+
 ## Implementation Details
 
 ### 1. Firebase Authentication Implementation
@@ -65,9 +71,6 @@ class AuthService {
 
   Stream<User?> get authStateChanges => _auth.authStateChanges();
 }
-
-
-
 ```
 
 #### 1.3 Authentication Flow
@@ -150,189 +153,4 @@ lib/
 │   ├── auth/
 │   ├── candidates/
 │   ├── companies/
-│   ├── dashboard/
-│   ├── home_page/
-│   ├── jobs/
-│   └── search/
-├── services/
-│   ├── auth_provider.dart
-│   ├── auth_service.dart
-│   └── job_service.dart
-├── firebase_options.dart
-├── index.dart
-└── main.dart
-```
-
-## Security Implementation
-
-### 1. Authentication Security
-- Implemented email/password authentication
-- User state management using Provider pattern
-- Secure auth state persistence
-- Error handling for authentication failures
-
-### 2. Firestore Security Rules
-```javascript
-rules_version = '2';
-service cloud.firestore {
-  match /databases/{database}/documents {
-    match /jobs/{document=**} {
-      allow read: if true;
-      allow write: if request.auth != null;
-    }
-  }
-}
-```
-
-## Features Implemented
-
-### 1. Authentication Features
-- User registration (Sign Up)
-- User login (Sign In)
-- Secure sign out
-- Persistent authentication state
-- Real-time auth state changes monitoring
-
-### 2. Job Management Features
-- Real-time job listings
-- Job creation (authenticated users only)
-- Chronological sorting of jobs
-- Company and date information display
-
-## Testing Results
-
-### 1. Authentication Tests
-- Successfully tested user registration
-- Verified login functionality
-- Confirmed logout operation
-- Tested auth state persistence
-- Verified error handling for invalid credentials
-
-### 2. Firestore Tests
-- Confirmed job creation with authentication
-- Verified real-time updates
-- Tested data persistence
-- Validated security rules
-
-## Integration Architecture
-```mermaid
-graph TD
-    A[User Interface] -->|Auth Actions| B[AuthService]
-    B -->|State Changes| C[AuthProvider]
-    C -->|Update UI| A
-    A -->|Job Actions| D[JobService]
-    D -->|Firestore Operations| E[Cloud Firestore]
-    E -->|Real-time Updates| D
-    D -->|Update UI| A
-```
-
-
-### Running the Application
-
-1. Clone the repository:
-   ```bash
-   git clone [repository-url]
-   cd jobexplore
-   ```
-
-2. Setup environment:
-   - Copy `.env.example` to `.env`
-   - Fill in your Firebase configuration values
-
-3. Install dependencies:
-   ```bash
-   flutter pub get
-   ```
-
-4. Run the application:
-   ```bash
-   # For development
-   flutter run
-
-   # For specific device
-   flutter run -d chrome        # For web
-   flutter run -d android       # For Android
-   flutter run -d ios          # For iOS
-
-   # To see all available devices
-   flutter devices
-   ```
-
-5. Build release version:
-   ```bash
-   # For Android
-   flutter build apk
-   
-   # For iOS
-   flutter build ios
-   
-   # For web
-   flutter build web
-   ```
-
-# Firebase Setup Instructions
-
-## Prerequisites
-- Node.js and npm installed
-- Flutter SDK installed
-- A Firebase project created in the Firebase Console
-
-## Setup Steps
-
-### 1. Install Firebase CLI
-```bash
-npm install -g firebase-tools
-```
-
-### 2. Login to Firebase
-```bash
-firebase login
-```
-
-### 3. Install FlutterFire CLI
-```bash
-dart pub global activate flutterfire_cli
-```
-
-### 4. Configure Firebase
-```bash
-flutterfire configure
-```
-
-During configuration:
-1. Select your Firebase project from the list
-2. Choose the platforms you want to support (iOS/Android/Web)
-3. This will automatically:
-   - Create `firebase_options.dart`
-   - Generate platform-specific files
-   - Update necessary configurations
-
-### 5. Update .gitignore
-Add these lines to your .gitignore:
-```
-# Firebase configuration files
-lib/firebase_options.dart
-android/app/google-services.json
-ios/Runner/GoogleService-Info.plist
-ios/firebase_app_id_file.json
-```
-
-## Post-Setup
-After cloning the project, each developer needs to:
-1. Have their own Firebase project
-2. Run `flutterfire configure`
-3. Select their Firebase project
-4. This will generate their own configuration files
-
-## Running the App
-```bash
-# Get dependencies
-flutter pub get
-
-# Run the app
-flutter run
-
-# Run on specific device
-flutter devices  # List available devices
-flutter run -d <device-id>
-```
+│
