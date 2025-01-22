@@ -226,38 +226,6 @@ graph TD
     D -->|Update UI| A
 ```
 
-```
-
-Add a new section for environment setup:
-
-```markdown
-## Environment Setup
-
-### Firebase Configuration
-1. Create a `.env` file in the project root:
-   ```text
-   FIREBASE_API_KEY=your_api_key
-   FIREBASE_APP_ID=your_app_id
-   FIREBASE_MESSAGING_SENDER_ID=your_sender_id
-   FIREBASE_PROJECT_ID=your_project_id
-   FIREBASE_STORAGE_BUCKET=your_storage_bucket
-   ```
-
-2. Never commit `.env` file to version control. Add to `.gitignore`:
-   ```text
-   # Environment files
-   .env
-   *.env
-   ```
-
-3. Create a sample `.env.example` file:
-   ```text
-   FIREBASE_API_KEY=
-   FIREBASE_APP_ID=
-   FIREBASE_MESSAGING_SENDER_ID=
-   FIREBASE_PROJECT_ID=
-   FIREBASE_STORAGE_BUCKET=
-   ```
 
 ### Running the Application
 
